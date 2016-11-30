@@ -1,6 +1,6 @@
 #ifndef SIMULATOR_HPP
 #define SIMULATOR_HPP
-
+#include <string.h>
 #include "job.hpp"
 #include "system.hpp"
 #include "j_scheduler.hpp"
@@ -9,10 +9,11 @@
 class Simulator
 {
   public:
-    Simulator();
+    Simulator(std::string filename);
     virtual ~Simulator(){}
     void submit(Job j);
     void update();
+    void begin();
     inline void init(int C, int M, int S, int Q) {
       sys.setconfig(C,M,S,Q);
     }
@@ -30,6 +31,6 @@ class Simulator
     System sys;
     j_scheduler j_s;
     p_scheduler p_s;
-    string file;
+    std::string file;
 };
 #endif
