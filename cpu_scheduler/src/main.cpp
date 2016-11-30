@@ -10,7 +10,9 @@ using std::ifstream;
 using namespace std;
 
 int main() {
-  Simulator sim;
+  string filename = "input_tests/t1.txt"
+  Simulator sim(filename);
   sim.init(1,2,3,4);
   cout << sim;
+  sim.begin();
 }

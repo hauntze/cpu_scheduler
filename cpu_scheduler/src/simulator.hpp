@@ -30,5 +30,6 @@ class Simulator
     System sys;
     j_scheduler j_s;
     p_scheduler p_s;
+    string file;
 };
 #endif

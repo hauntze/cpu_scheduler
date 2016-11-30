@@ -16,8 +16,8 @@ std::ostream &operator<<(std::ostream &out, Simulator &o)
   out << j_s;
   out << p_s;
 }
-Simulator::Simulator() {
-  
+Simulator::Simulator(string filename) {
+  filename = file;
 }
 void Simulator::update() {
   j_s.update(sys);
@@ -36,4 +36,7 @@ void Simulator::submit(Job j) {
   } else {
     p_s.submit(j, sys);
   }
+}
+void Simulator::begin() {
+  
 }
