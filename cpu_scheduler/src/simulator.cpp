@@ -2,6 +2,7 @@
 #include <iostream>  
 #include <fstream>
 #include <stdio.h>
+#include <limits>
 #include "simulator.hpp"
 
 using namespace std;
@@ -36,6 +37,48 @@ void Simulator::submit(Job j) {
     p_s.submit(j, sys);
   }
 }
+
+fstream& GoToLine(fstream& file, unsigned int num){
+  file.seekg(ios:::beg);
+  int i;
+  for(i = 0; i < num - 1; ++i){
+    file.ignore(numeric_limits<streamsize>::max(),'\n');
+  }
+  return file;
+}
+
 void Simulator::begin() {
+  int t = 1;
+  int lt = 0;
+  int lnum = 1;
   
+  string currentline;
+  
+  char cline[];
+  char *command;
+  char *number;
+  
+  fstream fin;
+  
+  fin.open(filename);
+  
+  while(!fin.eof()){
+    if(lt < t){
+      lnum++;
+      currentline = GoToLine(fin, lnum);
+      cline = GoToLine(fin, lnum);
+      command = strtok(cline, " ");
+      number = strtok(NULL, " ");
+      lt = (int)number;
+    }
+    else if(lt == t){
+      if(command == "C"){}
+      if(command == "A"){}
+      if(command == "Q"){}
+      if(command == "L"){}
+      if(command == "D"){}
+    }
+    t++;
+  }
+  fin.close();
 }
