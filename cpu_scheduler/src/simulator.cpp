@@ -37,5 +37,71 @@ void Simulator::submit(Job j) {
   }
 }
 void Simulator::begin() {
-  
+	int t = 1; //value to store time
+	int lt = 0; //value to store time from the line - set to 0 so it increments to 1
+	int lnum = 0; //value to store line number in file - set to 0 so that it increments to 1
+
+	int first, second, third, fourth, fifth; //used to store values 
+	
+	char currentline[];
+	char *token; //to store string tokens
+	char *command; //to store command of current line
+
+	fstream fin;
+	fin.open(filename);
+
+	while(!fin.eof()){
+		if(lt < t){
+			lnum++;
+			currentline = GoToLine(fin, lnum);
+			token = strtok(cline, " MSQJRPD=");
+			command = token;
+			if(isdigit(command)){
+				lt = (int)command;
+			} else {
+				token = strtok(NULL, " ");
+				lt = (int)token;
+			}
+		}
+		else if(lt == t){
+			if(command == "C"){
+				token = strtok(NULL, " ");
+				first = (int)token;
+				token = strtok(NULL, " ");
+				second = (int)token;
+				token = strtok(NULL, " ");
+				third = (int)token;
+				//do stuff
+			}
+			if(command == "A"){
+				token = strtok(NULL, " ");
+				first = (int)token;
+				token = strtok(NULL, " ");
+				second = (int)token;
+				token = strtok(NULL, " ");
+				third = (int)token;
+				token = strtok(NULL, " ");
+				fourth = (int)token;
+				token = strtok(NULL, " ");
+				fifth = (int)token;
+				//do stuff
+			}
+			if(command == "Q"){
+				token = strtok(NULL, " ");
+				first = (int)token;
+				token = strtok(NULL, " ");
+				second = (int)token;
+				//do stuff
+			}
+			if(command == "L"){
+				token = strtok(NULL, " ");
+				first = (int)token;
+				token = strtok(NULL, " ");
+				second = (int)token;
+				//do stuff
+			}
+		}
+		t++;
+	}
+	fin.close();
 }
